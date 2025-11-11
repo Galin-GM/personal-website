@@ -45,15 +45,15 @@ export default function Home() {
                 efficient, and scalable software - from full stack web applications to pipelines that decode and analyse blockchain data.
               </p>
               <p className="max-w-prose text-foreground/80">
-                I'm currently learning to build AI agents using the Vercel AI SDK, exploring how intelligent systems can enhance user experience
-                and automation.
-              </p>
-              <p className="max-w-prose text-foreground/80">
                 I have experience working across the stack, from languages such as Python, Scala and Javascript, to frameworks such as React and NextJs,
                 and cloud technologies like AWS.
               </p>
               <p className="max-w-prose text-foreground/80">
-                I'm currently looking for a new role as a developer. Hire me?
+                I'm currently learning to build AI agents using the Vercel AI SDK, exploring how intelligent systems can enhance user experience
+                and automation.
+              </p>
+              <p className="max-w-prose text-foreground/80">
+                I'm looking for a new role as a developer. Hire me?
               </p>
               <div className="mt-2 flex gap-3">
                 <a href="https://www.linkedin.com/in/mihaylov-galin/" target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center justify-center rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]">
