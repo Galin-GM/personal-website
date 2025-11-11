@@ -22,7 +22,7 @@ export const projects: Project[] = [
 	{
 		slug: "Conversate",
 		title: "Conversate",
-		description: "Worked alongside North Yorkshire Council to bring them a live interpretation solution that allows two parties to have a real time conversation without the need of a physical interpreter.",
+		description: "Worked alongside North Yorkshire Council to bring them a live interpretation solution, allowing real time conversations without the need of a physical interpreter.",
 		image: "/projects/conversate.png",
 		tags: ["React", "TypeScript", "AWS"],
 		links: { demo: "https://youtu.be/3KscQ6l8dik?si=DicA2ZnE3RFRe6WN&t=52", github: "https://github.com/translation-nyc/nyc-translation-app" },
