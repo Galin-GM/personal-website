@@ -1,67 +1,69 @@
-'use client';
+"use client";
 
-import Link from "next/link";
 import React from "react";
 
 const sections = [
-	{ id: "hero", label: "Home" },
-	{ id: "projects", label: "Projects" },
-	{ id: "contact", label: "Contact" },
+  { id: "hero", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ] as const;
 
 export function Nav() {
-	const [active, setActive] = React.useState<string>("hero");
+  const [active, setActive] = React.useState<string>("hero");
 
-	React.useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) {
-						setActive(entry.target.id);
-					}
-				}
-			},
-			{ rootMargin: "-40% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-		);
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-		sections.forEach((s) => {
-			const el = document.getElementById(s.id);
-			if (el) observer.observe(el);
-		});
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5] },
+    );
 
-		return () => observer.disconnect();
-	}, []);
+    sections.forEach(({ id }) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
 
-	return (
-		<nav
-			aria-label="Primary"
-			className="sticky top-0 z-50 w-full border-b border-black/[.06] dark:border-white/[.09] bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-		>
-			<div className="mx-auto max-w-3xl px-4 sm:px-6">
-				<div className="flex h-14 items-center justify-center">
-					<ul className="flex items-center gap-2 sm:gap-3">
-						{sections.map((s) => {
-							const isActive = active === s.id;
-							return (
-								<li key={s.id}>
-									<a
-										href={`#${s.id}`}
-										className={
-											isActive
-												? "inline-flex h-8 items-center rounded-full px-3 text-sm bg-foreground text-background"
-												: "inline-flex h-8 items-center rounded-full px-3 text-sm border border-black/[.08] dark:border-white/[.145] text-foreground/80 hover:bg-black/[.04] dark:hover:bg-[#1a1a1a]"
-										}
-										aria-current={isActive ? "page" : undefined}
-									>
-										{s.label}
-									</a>
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-			</div>
-		</nav>
-	);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <nav className="nav-panel" aria-label="Primary navigation">
+      <a className="nav-brand" href="#hero" aria-label="Galin Mihaylov — home">
+        <span>GM</span>
+        <strong>Galin Mihaylov</strong>
+      </a>
+
+      <ul className="nav-links">
+        {sections.map((section) => (
+          <li key={section.id}>
+            <a
+              href={`#${section.id}`}
+              className={active === section.id ? "active" : undefined}
+              aria-current={active === section.id ? "location" : undefined}
+            >
+              {section.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        className="nav-cta"
+        href="https://www.linkedin.com/in/mihaylov-galin/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg className="linkedin-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.5 8.2H3.2V19h3.3V8.2ZM4.85 3A1.92 1.92 0 1 0 4.9 6.84 1.92 1.92 0 0 0 4.85 3ZM19.8 12.8c0-3.25-1.73-4.76-4.04-4.76a3.48 3.48 0 0 0-3.15 1.73V8.2H9.3V19h3.31v-5.35c0-1.41.27-2.78 2.02-2.78 1.72 0 1.74 1.61 1.74 2.87V19h3.31l.12-6.2Z" />
+        </svg>
+        LinkedIn
+        <span className="nav-cta-arrow" aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  );
 }
-
