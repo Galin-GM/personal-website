@@ -20,7 +20,7 @@ export function Section({
 			{title ? (
 				<h2
 					id={`${id}-title`}
-					className={titleClassName ?? "text-2xl font-semibold tracking-tight text-foreground mb-6"}
+					className={titleClassName ?? "section-title"}
 				>
 					{title}
 				</h2>
