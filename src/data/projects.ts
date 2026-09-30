@@ -6,7 +6,7 @@ export type Project = {
   imageFit?: "cover" | "contain";
   imageBackground?: string;
   tags: string[];
-  links: { live?: string; demo?: string; github?: string };
+  links: { live?: string; demo?: string; github?: string; published?: string };
 };
 
 // Provide your projects here. Example structure:
@@ -45,6 +45,8 @@ export const projects: Project[] = [
     links: {
       demo: "https://youtu.be/3KscQ6l8dik?si=DicA2ZnE3RFRe6WN&t=52",
       github: "https://github.com/translation-nyc/nyc-translation-app",
+      published:
+        "https://kclpure.kcl.ac.uk/portal/en/publications/real-time-ai-powered-conversation-translation-for-local-governmen/",
     },
   },
   {

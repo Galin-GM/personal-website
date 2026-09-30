@@ -18,6 +18,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     project.links.github
       ? { label: "View source", href: project.links.github }
       : null,
+    project.links.published
+      ? { label: "Published Work", href: project.links.published }
+      : null,
   ].filter((link): link is { label: string; href: string } => Boolean(link));
 
   return (
